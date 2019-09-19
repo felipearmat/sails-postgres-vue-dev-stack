@@ -1,5 +1,9 @@
 # Desenvolvimento WEB - App de Listas
 
+## Autores
+-Felipe Araújo Matos                5968691
+-Victor Henrique Nogueira Benevides 8531491
+
 ## O que você vai encontrar aqui?
 - Uma pasta "app" com a aplicação, com o seguinte conteúdo:
   - Uma pasta public com o arquivo index.html (a view utilizada para entregar a aplicação) e outros possíveis arquivos
