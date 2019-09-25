@@ -22,4 +22,4 @@ EXPOSE 8080
 WORKDIR /work
 
 # Definindo comando padrão da imagem
-CMD npm run serve
+CMD npm run start
