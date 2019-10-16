@@ -27,17 +27,17 @@ __Docker__:
 **!!!Obs!!!** O docker só está disponível para utilização em plataformas Unix e em plataformas Windows versão Pro ou mais completa, Windows Home e Mac OS não poderão utilizar essa opção!
 
 - Instale o docker (ou docker community em plataformas Unix) no seu pc
-- Acessando a raiz do projeto, crie o contâiner para a aplicação com o seguinte comando do docker (ele utilizará o script do arquivo "dockerfile" para construir o contâiner):
+- Acessando a raiz do projeto (pasta onde está o dockerfile), crie o contâiner para a aplicação com o seguinte comando do docker (ele utilizará o script do arquivo "dockerfile" para construir o contâiner):
 ```
 docker build -t desweb/applista .
 ```
 
-- Agora execute o contâiner com o seguinte comando (ele conectará a porta 8080 do seu pc com a porta 8080 do contâiner, mapeará a pasta ./app para a pasta /work do contâiner e executará o contâiner desweb/applist que foi criado no passo anterior)
+- Agora execute o contâiner com o seguinte comando (ele conectará a porta 8080 do seu pc com a porta 1337 do contâiner, mapeará a pasta ./app para a pasta /work do contâiner, criará uma variável de ambiente que indica a pasta da aplicação e executará o contâiner desweb/applist que foi criado no passo anterior)
 ```
 # Comando para Windows
-docker run -it --rm -p 8080:8080 -v %cd%/app:/work desweb/applista
+docker run -it --rm -p 1337:1337 -e APP_FOLDER="/work" -v %cd%:/work desweb/applista
 
 # Comando para Unix
-docker run -it --rm --net=host -v `pwd`/app:/work desweb/applista
+docker run -it --rm --net=host -e APP_FOLDER="/work" -v `pwd`:/work desweb/applista
 ```
-- Acesse localhost:8080 no seu navegador e se divirta!
+- Acesse localhost:1337 no seu navegador e se divirta!

@@ -1,0 +1,4 @@
+﻿.git
+node_modules
+sails/node_modules
+app/node_modules

@@ -1,0 +1,5 @@
+{"$$indexRemoved":"createdAt"}
+{"$$indexRemoved":"lastName"}
+{"$$indexRemoved":"updatedAt"}
+{"$$indexRemoved":"firstName"}
+{"$$indexCreated":{"fieldName":"id","unique":true}}
