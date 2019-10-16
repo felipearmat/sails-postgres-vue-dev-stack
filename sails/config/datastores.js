@@ -12,7 +12,7 @@
  * For more information on configuring datastores, check out:
  * https://sailsjs.com/config/datastores
  */
-
+const sqlite3 = require('sqlite3');
 module.exports.datastores = {
 
 
@@ -48,8 +48,10 @@ module.exports.datastores = {
     *    (See https://sailsjs.com/config/datastores for help.)                 *
     *                                                                          *
     ***************************************************************************/
-    adapter: 'sails-disk',
-    dir: '/sailsdb',
+    adapter: 'sails-sqlite3',
+    filename: './db/sqlite.db',
+    mode: sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE,
+    verbose: false
     // url: 'mysql://user:password@host:port/database',
 
   },
