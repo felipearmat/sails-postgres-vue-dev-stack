@@ -21,8 +21,11 @@ module.exports.routes = {
 
   '/': { view: 'pages/homepage' },
 
-  'get /': { view: 'pages/homepage' },
-  'post /': 'HomepageController.formTest'
+  'get /anotacoes': 'AnotacaoController.consulta'
+
+  'post /criaAnotacao': 'AnotacaoController.criaAnotacao'
+  'post /alteraAnotacao': 'AnotacaoController.alteraAnotacao'
+  'post /removeAnotacao': 'AnotacaoController.removeAnotacao'
 
   /***************************************************************************
   *                                                                          *

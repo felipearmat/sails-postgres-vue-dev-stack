@@ -1,5 +1,5 @@
 /**
- * HomepageController
+ * AnotacaoController
  *
  * @description :: Server-side actions for handling incoming requests.
  * @help        :: See https://sailsjs.com/docs/concepts/actions
@@ -7,8 +7,20 @@
 
 module.exports = {
   /**
-   * `HomepageController.formTest()`
+   * `AnotacaoController`
    */
+  consulta: async function(req, res) {
+
+  },
+  criaAnotacao: async function(req, res) {
+
+  },
+  alteraAnotacao: async function(req, res) {
+
+  },
+  removeAnotacao: async function(req, res) {
+
+  },
   formTest: async function (req, res) {
    var first_name = req.param('first_name');
    var last_name = req.param('last_name');
