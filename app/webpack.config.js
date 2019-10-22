@@ -12,7 +12,7 @@ module.exports = {
     main: './src/main.js'
   },
   output: {
-    path: resolve('./public/static'),
+    path: resolve('../sails/assets/js'),
     publicPath: '/static/',
     filename: '[name].js',
   },

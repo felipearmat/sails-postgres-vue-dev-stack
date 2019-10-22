@@ -6,7 +6,7 @@ cd $APP_FOLDER
 cd app
 echo "Instalando dependências do Vue..."
 npm install
-echo "Iniciando Vue..."
+echo "Iniciando Vue através do Webpack..."
 npm start &
 cd ../sails
 echo "Instalando dependências do Sails..."

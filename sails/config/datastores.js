@@ -48,6 +48,9 @@ module.exports.datastores = {
     *    (See https://sailsjs.com/config/datastores for help.)                 *
     *                                                                          *
     ***************************************************************************/
+    /* Melhor utilizar o adaptador do sqlite para dev, pois gera um arquivo de *
+    *  BD facilmente gerenciável e não tem problemas de leitura/escrita em     *
+    *  ambientes de desenvolvimento utilizando Docker                         */
     adapter: 'sails-sqlite3',
     filename: './db/sqlite.db',
     mode: sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE,
