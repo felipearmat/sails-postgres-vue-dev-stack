@@ -21,11 +21,11 @@ module.exports.routes = {
 
   '/': { view: 'pages/homepage' },
 
-  'get /anotacoes': 'AnotacaoController.consulta'
+  'get /anotacoes': 'AnotacaoController.consulta',
 
-  'post /criaAnotacao': 'AnotacaoController.criaAnotacao'
-  'post /alteraAnotacao': 'AnotacaoController.alteraAnotacao'
-  'post /removeAnotacao': 'AnotacaoController.removeAnotacao'
+  'post /criaAnotacao': 'AnotacaoController.criaAnotacao',
+  'post /alteraAnotacao': 'AnotacaoController.alteraAnotacao',
+  'post /removeAnotacao': 'AnotacaoController.removeAnotacao',
 
   /***************************************************************************
   *                                                                          *
