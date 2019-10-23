@@ -76,7 +76,7 @@ export default {
       this.$emit('click', '')
       this.$http.get(self.url, {
         params: self.parameters,
-        headers: { 'X-CSRFToken': Util.getCookie('csrftoken') }
+        headers: { 'X-CSRF-Token': window._csrf }
       }).then(function (response) {
         self.setValue(response.data)
         self.setResponse(response)

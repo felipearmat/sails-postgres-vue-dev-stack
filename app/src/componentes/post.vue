@@ -79,7 +79,7 @@ export default {
         url: self.url,
         params: self.parameters,
         data: self.value,
-        headers: { 'X-CSRFToken': Util.getCookie('csrftoken') }
+        headers: { 'X-CSRF-Token': window._csrf }
       }).then(function (response) {
         self.busy = false
         self.$emit('busy', false)
