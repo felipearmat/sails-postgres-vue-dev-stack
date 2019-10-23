@@ -3,11 +3,13 @@
     :header="titulo"
     :title="titulo"
   >
-    <b-form-checkbox-group
-      v-model="value.selecionados"
-      :options="value.valores"
-      stacked
-    />
+    <b-form-checkbox
+      v-for="option in value.valores"
+      :key="option.texto"
+      v-model="scopedSelecionados"
+    >
+      {{ option.texto }}
+    </b-form-checkbox>
     <template v-slot:footer>
       <b-input-group
         prepend="Novo Item"
@@ -15,12 +17,13 @@
       >
         <b-form-input v-model="texto" />
         <b-input-group-append>
-          <b-button
-            variant="primary"
-            @click="insereValor(texto)"
+          <app-post
+            url="/criaAnotacao"
+            :value="postData"
+            @resolved="trataPost"
           >
             Inserir
-          </b-button>
+          </app-post>
         </b-input-group-append>
       </b-input-group>
     </template>
@@ -28,7 +31,11 @@
 </template>
 
 <script>
+import post from './post.vue'
 export default {
+  components: {
+    'app-post': post
+  },
   props: {
     titulo: {
       type: String,
@@ -45,19 +52,25 @@ export default {
     }
   },
   computed: {
-    scopedValue: {
+    postData () {
+      return {
+        texto: this.texto,
+        item: this.value.nome
+      }
+    },
+    scopedSelecionados: {
       get () {
-        return this.value
+        return this.value.selecionados
       },
       set (newVal) {
-        this.$emit('input', newVal)
+        this.value.selecionados = newVal
+        this.$emit('input', this.value)
       }
     }
   },
   methods: {
-    insereValor (string) {
-      this.scopedValue.valores.push(string)
-      this.texto = ''
+    trataPost (response) {
+      this.$emit('resolved', response)
     }
   }
 }

@@ -9,23 +9,33 @@ module.exports = {
   /**
    * `AnotacaoController`
    */
-  consulta: async function(req, res) {
+  consulta: async function(request, response) {
+    var _itens = await Item.find().populate('anotacoes')
+    return response.send(_itens)
+  },
+  criaItem: async function(request, response) {
+    var _nome = request.param('nome')
+    await Item.create({nome: _nome})
+    return response.send(`<p>Criado: ${_nome}!</p>`)
+  },
+  criaAnotacao: async function(request, response) {
+    var _nomeItem = request.body.item
+    var _texto = request.body.texto
+    var _item = await Item.findOne({ nome: _nomeItem })
+    await Anotacao.create({item: _item.id, texto: _texto})
+    return response.send(`<p>Criado: ${_texto} em ${_nomeItem}!</p>`)
+  },
+  alteraItem: async function(request, response) {
 
   },
-  criaAnotacao: async function(req, res) {
+  removeItem: async function(request, response) {
 
   },
-  alteraAnotacao: async function(req, res) {
+  alteraAnotacao: async function(request, response) {
 
   },
-  removeAnotacao: async function(req, res) {
+  removeAnotacao: async function(request, response) {
 
   },
-  formTest: async function (req, res) {
-   var first_name = req.param('first_name');
-   var last_name = req.param('last_name');
-   await Person.create({firstName: first_name, lastName: last_name});
-   return res.send(`<p>Hello, ${first_name} ${last_name}!</p>`);
-  }
-};
+}
 
