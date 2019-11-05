@@ -63,6 +63,7 @@ export default {
         return this.value.selecionados
       },
       set (newVal) {
+        console.log('Escopo da lista', newVal)
         this.value.selecionados = newVal
         this.$emit('input', this.value)
       }
@@ -70,6 +71,7 @@ export default {
   },
   methods: {
     trataPost (response) {
+      // Emite um evento resolved para que o pai do item saiba que deve atualizar
       this.$emit('resolved', response)
     }
   }
