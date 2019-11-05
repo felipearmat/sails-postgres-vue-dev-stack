@@ -1,15 +1,16 @@
-
-export NODE_PATH=$APP_FOLDER/node_modules
+#!/bin/bash
 
 echo "Executando script de desenvolvimento..."
-cd $APP_FOLDER
-cd app
-echo "Instalando dependências do Vue..."
-npm install
-echo "Iniciando Vue através do Webpack..."
+cd "$APP_FOLDER/app"
+echo "Instalando dependências do Vue e do Sails..."
+npm install &
+cd "$APP_FOLDER/sails"
+npm install &
+wait
+echo "Dependências instaladas!!!"
+echo "Iniciando Vue no modo watch com WebPack..."
+cd "$APP_FOLDER/app"
 npm start &
-cd ../sails
-echo "Instalando dependências do Sails..."
-npm install
+cd "$APP_FOLDER/sails"
 echo "Iniciando Sails..."
 sails lift

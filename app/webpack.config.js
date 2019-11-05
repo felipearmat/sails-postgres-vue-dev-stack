@@ -3,8 +3,8 @@ var webpack = require('webpack')
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
-function resolve (dir) {
-  return path.join(__dirname, dir)
+function resolve (...dir) {
+  return path.join(__dirname, ...dir)
 }
 
 module.exports = {
@@ -12,7 +12,7 @@ module.exports = {
     main: './src/main.js'
   },
   output: {
-    path: resolve('../sails/assets/js'),
+    path: resolve('..', 'sails', 'assets', 'js'),
     publicPath: '/static/',
     filename: '[name].js',
   },
@@ -20,7 +20,7 @@ module.exports = {
     extensions: ['.js', '.vue', '.json'],
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
-      '@': resolve('./src'),
+      '@': resolve('src'),
     }
   },
   module: {
@@ -29,7 +29,7 @@ module.exports = {
       test: /\.(js|vue)$/,
       loader: 'eslint-loader',
       enforce: 'pre',
-      include: [resolve('./src'), resolve('./test')]
+      include: [resolve('src'), resolve('test')]
     },
     {
       test: /\.css$/,
@@ -85,7 +85,7 @@ module.exports = {
     {
       test: /\.js$/,
       loader: 'babel-loader',
-      include: [resolve('./src'), resolve('./test')],
+      include: [resolve('src'), resolve('test')],
       exclude: /node_modules/
     },
     {
@@ -109,9 +109,8 @@ module.exports = {
     overlay: true
   },
   watchOptions: {
-    poll: 1000,
     // Ignora o diretório node_modules
-    ignored: ['node_modules']
+    ignored: [resolve('node_modules')]
   },
   performance: {
     hints: false

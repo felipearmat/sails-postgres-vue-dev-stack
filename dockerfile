@@ -12,24 +12,22 @@ RUN echo $TZ > /etc/timezone \
  && apt-get upgrade -y \
  && apt-get clean
 
-# Instalando Node.js
-RUN curl -sL https://deb.nodesource.com/setup_12.x | bash - \
- && apt-get install -y nodejs \
- && apt-get clean
-
-# Instalando Sails
-RUN npm install sails -g
-
-# Instalando o vue-cli e bootstrap-vue.
-RUN npm install -g @vue/cli
-RUN npm install --save bootstrap-vue
+# Script para execução do container
+COPY ./setup/run.sh /opt/run.sh
 
 # Criando pasta de trabalho
 RUN mkdir /work
+
+# Usa o watcher chokidar do node.js para evitar problemas com o docker
+ENV CHOKIDAR_USEPOLLING 1
+ENV CHOKIDAR_INTERVAL 1000
+
+# Instalando Sails
+RUN npm install sails -g
 
 EXPOSE 1337
 
 WORKDIR /work
 
-# Definindo comando padrão da imagem
-CMD ./setup/run.sh
+# Comando padrão para execução do container
+CMD ["/opt/run.sh"]

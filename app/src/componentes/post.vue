@@ -13,7 +13,6 @@
 </template>
 
 <script>
-import Util from './util.js'
 export default {
   props: {
     variant: {
