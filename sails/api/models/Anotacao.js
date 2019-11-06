@@ -11,6 +11,9 @@ module.exports = {
             model: 'item',
             required: true
         },
+        selecionado: {
+            type: 'boolean',
+        },
         texto: {
             type: 'string',
         },

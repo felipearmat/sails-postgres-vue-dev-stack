@@ -12,7 +12,7 @@
     </b-form-checkbox>
     <template v-slot:footer>
       <b-input-group
-        prepend="Novo Item"
+        prepend="Nova Anotação"
         class="mt-2 mb-2"
       >
         <b-form-input v-model="texto" />

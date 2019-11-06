@@ -94,7 +94,6 @@ export default {
           // that falls out of the range of 2xx
           if (e.response.status >= 500) {
             e.response.data = {
-              'data_req': e.response.data_req,
               'erros': [`Ocorreu um erro ${e.response.status}.`]
             }
           }
@@ -104,7 +103,6 @@ export default {
           // `e.request` is an instance of XMLHttpRequest in the browser and an instance of
           // http.ClientRequest in node.js
           e.request.data = {
-            'data_req': e.request.data_req,
             'erros': ['Ocorreu um erro sem resposta.']
           }
           self.setResponse(e.request)
