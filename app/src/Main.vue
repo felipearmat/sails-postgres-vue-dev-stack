@@ -13,7 +13,7 @@
         <app-lista
           v-for="(item, index) in listas"
           :key="'lista_' + index"
-          v-model="listas[index]"
+          :value="listas[index]"
           :titulo="item.nome"
           class="mb-3"
           @resolved="trataPost"
@@ -71,13 +71,18 @@ export default {
     },
     listas () {
       var _res = []
-      for (var item in this.valores) {
-        var _id = this.valores[item].id
+      for (var chave in this.valores) {
+        var _id = this.valores[chave].id
+        var _selecionados = []
+        var _anotacoes = this.valores[chave].anotacoes
+        for (var index in _anotacoes) {
+          _selecionados[index] = this.valores[chave].anotacoes[index].selecionado
+        }
         var _item = {
           id: _id,
-          nome: this.valores[item].nome,
-          valores: this.valores[item].anotacoes,
-          selecionados: this.selecionados[_id]
+          nome: this.valores[chave].nome,
+          valores: _anotacoes,
+          selecionados: _selecionados
         }
         _res.push(_item)
       }

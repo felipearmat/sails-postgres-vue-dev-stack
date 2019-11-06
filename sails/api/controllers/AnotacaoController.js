@@ -29,10 +29,10 @@ module.exports = {
     await Anotacao.create({item: _item.id, texto: _texto})
     return response.json({ resposta: `Anotacao criada com sucesso na lista: '${_nomeItem}'!` })
   },
-  alteraItem: async function(request, response) {
+  alteraLista: async function(request, response) {
 
   },
-  removeItem: async function(request, response) {
+  removeLista: async function(request, response) {
 
   },
   alteraAnotacao: async function(request, response) {

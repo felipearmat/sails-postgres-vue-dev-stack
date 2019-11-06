@@ -4,9 +4,10 @@
     :title="titulo"
   >
     <b-form-checkbox
-      v-for="option in value.valores"
+      v-for="(option, index) in value.valores"
       :key="option.texto"
-      v-model="scopedSelecionados"
+      :value="value.selecionados"
+      @change="trataCheckBox($event, index)"
     >
       {{ option.texto }}
     </b-form-checkbox>
@@ -63,13 +64,24 @@ export default {
         return this.value.selecionados
       },
       set (newVal) {
-        console.log('Escopo da lista', newVal)
+        var _valores = this.value.valores
         this.value.selecionados = newVal
+        for (var chave in _valores) {
+          _valores[chave].selecionado = newVal[chave]
+        }
+        console.log('escopo da lista', this.value)
         this.$emit('input', this.value)
       }
     }
   },
   methods: {
+    trataCheckBox (event, index) {
+      var _valores = this.value.valores
+      this.value.selecionados[index] = !this.value.selecionados[index]
+      this.value.valores[index].selecionado = !this.value.valores[index].selecionado
+      console.log('escopo da lista', this.value)
+      this.$emit('input', this.value)
+    },
     trataPost (response) {
       // Emite um evento resolved para que o pai do item saiba que deve atualizar
       this.$emit('resolved', response)
