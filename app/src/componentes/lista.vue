@@ -84,6 +84,7 @@ export default {
     },
     trataPost (response) {
       // Emite um evento resolved para que o pai do item saiba que deve atualizar
+      this.texto = ''
       this.$emit('resolved', response)
     }
   }
