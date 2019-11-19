@@ -33,9 +33,9 @@ docker build -t desweb/applista .
 - Agora execute o contâiner com o seguinte comando (ele conectará a porta 1337 do seu pc com a porta 1337 do contâiner, mapeará a pasta /app para a pasta /work do contâiner, criará uma variável de ambiente que indica a pasta da aplicação e executará o contâiner desweb/applist que foi criado no passo anterior)
 ```
 # Comando para Windows
-docker run -it --rm -p 1337:1337 -e APP_FOLDER="/work" -v %cd%:/work desweb/applista
+docker run -it --rm -p 1337:1337 -e APP_FOLDER="/work" -v %cd%:/work --name=applista desweb/applista
 
 # Comando para Unix
-docker run -it --rm --net=host -e APP_FOLDER="/work" -v `pwd`:/work desweb/applista
+docker run -it --rm --net=host -e APP_FOLDER="/work" -v `pwd`:/work --name=applista desweb/applista
 ```
 - Acesse localhost:1337 no seu navegador e se divirta!

@@ -1,12 +1,13 @@
 #!/bin/bash
 
 echo "Executando script de desenvolvimento..."
+echo "Iniciando Postgres..."
+docker-entrypoint.sh postgres &
 cd "$APP_FOLDER/app"
 echo "Instalando dependências do Vue e do Sails..."
-npm install &
+npm install
 cd "$APP_FOLDER/sails"
-npm install &
-wait
+npm install
 echo "Dependências instaladas!!!"
 echo "Iniciando Vue no modo watch com WebPack..."
 cd "$APP_FOLDER/app"

@@ -12,7 +12,7 @@
  * For more information on configuring datastores, check out:
  * https://sailsjs.com/config/datastores
  */
-const sqlite3 = require('sqlite3');
+const postgres = require('sails-postgresql')
 module.exports.datastores = {
 
 
@@ -48,13 +48,8 @@ module.exports.datastores = {
     *    (See https://sailsjs.com/config/datastores for help.)                 *
     *                                                                          *
     ***************************************************************************/
-    /* Melhor utilizar o adaptador do sqlite para dev, pois gera um arquivo de *
-    *  BD facilmente gerenciável e não tem problemas de leitura/escrita em     *
-    *  ambientes de desenvolvimento utilizando Docker                         */
-    adapter: 'sails-sqlite3',
-    filename: './db/sqlite.db',
-    mode: sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE,
-    verbose: false
+    adapter: 'sails-postgresql',
+    url: 'postgresql://sails_app:password@localhost:5432/sails_app',
     // url: 'mysql://user:password@host:port/database',
 
   },
