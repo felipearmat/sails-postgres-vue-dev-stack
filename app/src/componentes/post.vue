@@ -68,7 +68,7 @@ export default {
       this.lastResponse = response
       this.$emit('resolved', response)
     },
-    submit (tipo) {
+    submit () {
       var self = this
       this.busy = true
       this.$emit('busy', true)

@@ -3,14 +3,24 @@
     :header="titulo"
     :title="titulo"
   >
-    <b-form-checkbox
-      v-for="(option, index) in value.valores"
-      :key="option.texto"
-      :value="value.selecionados"
-      @change="trataCheckBox($event, index)"
-    >
-      {{ option.texto }}
-    </b-form-checkbox>
+    <template v-for="option in value.valores">
+      <b-form-checkbox
+        :key="option.texto + '_checkbox'"
+        v-model="value.selecionados"
+        :value="option.id"
+        @change="trataCheckBox($event, option)"
+      >
+        {{ option.texto }}
+      </b-form-checkbox>
+      <app-post
+        :key="option.id + '_post'"
+        :ref="option.id + '_post'"
+        :value="postLista(option)"
+        url="/alteraAnotacao"
+        hidden
+        @resolved="trataPost"
+      />
+    </template>
     <template v-slot:footer>
       <b-input-group
         prepend="Nova Anotação"
@@ -69,18 +79,20 @@ export default {
         for (var chave in _valores) {
           _valores[chave].selecionado = newVal[chave]
         }
-        console.log('escopo da lista', this.value)
         this.$emit('input', this.value)
       }
     }
   },
   methods: {
-    trataCheckBox (event, index) {
-      var _valores = this.value.valores
-      this.value.selecionados[index] = !this.value.selecionados[index]
-      this.value.valores[index].selecionado = !this.value.valores[index].selecionado
-      console.log('escopo da lista', this.value)
-      this.$emit('input', this.value)
+    postLista (anotacao) {
+      return anotacao
+    },
+    trataCheckBox (event, item) {
+      var _itemIndex = this.value.valores.findIndex(valor => valor.id === item.id)
+      if (_itemIndex >= 0) {
+        this.value.valores[_itemIndex].selecionado = !this.value.valores[_itemIndex].selecionado
+      }
+      this.$refs[item.id + '_post'][0].submit()
     },
     trataPost (response) {
       // Emite um evento resolved para que o pai do item saiba que deve atualizar

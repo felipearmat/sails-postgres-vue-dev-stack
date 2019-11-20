@@ -16,6 +16,7 @@
           :value="listas[index]"
           :titulo="item.nome"
           class="mb-3"
+          @changeLista="atualizaLista"
           @resolved="trataPost"
         />
       </b-col>
@@ -26,7 +27,7 @@
       <b-col cols="6">
         <b-input-group
           prepend="Nova Lista"
-          class="mt-2 mb-2"
+          class="mb-2"
         >
           <b-form-input v-model="nome" />
           <b-input-group-append>
@@ -49,11 +50,13 @@
 import lista from './componentes/lista.vue'
 import get from './componentes/get.vue'
 import post from './componentes/post.vue'
+import mensagens from './componentes/mensagens.vue'
 export default {
   components: {
     'app-lista': lista,
     'app-get': get,
-    'app-post': post
+    'app-post': post,
+    'app-mensagens': mensagens
   },
   data: function () {
     return {
@@ -73,16 +76,12 @@ export default {
       var _res = []
       for (var chave in this.valores) {
         var _id = this.valores[chave].id
-        var _selecionados = []
         var _anotacoes = this.valores[chave].anotacoes
-        for (var index in _anotacoes) {
-          _selecionados[index] = this.valores[chave].anotacoes[index].selecionado
-        }
         var _item = {
           id: _id,
           nome: this.valores[chave].nome,
           valores: _anotacoes,
-          selecionados: _selecionados
+          selecionados: this.selecionados[_id]
         }
         _res.push(_item)
       }
@@ -98,23 +97,41 @@ export default {
       if (response.data.erros) {
         this.erros = response.data.erros
       } else {
-        for (var chave in response.data) {
-          var _id = response.data[chave].id
-          if (!this.selecionados[_id]) {
-            this.selecionados[_id] = []
+        this.valores = response.data
+        for (var chave in this.valores) {
+          var _item = this.valores[chave]
+          var _id = String(_item.id)
+          _item.anotacoes.sort(this.ordenaPorID)
+          this.selecionados[_id] = []
+          for (var key in _item.anotacoes) {
+            var _anotacao = _item.anotacoes[key]
+            if (_anotacao.selecionado) {
+              this.selecionados[_id].push(_anotacao.id)
+            }
           }
         }
-        this.valores = response.data
       }
     },
     trataPost (response) {
       this.erros = []
       this.nome = ''
       if (response.data.erros) {
-        window.alert(response.data.erros)
+        this.erros = response.data.erros
       } else {
         this.$refs.get_anotacoes.submit()
       }
+    },
+    ordenaPorID (item1, item2) {
+      if (item1.id < item2.id) {
+        return -1
+      }
+      if (item1.id > item2.id) {
+        return 1
+      }
+      return 0
+    },
+    atualizaLista (value) {
+      console.log(value)
     }
   }
 }
