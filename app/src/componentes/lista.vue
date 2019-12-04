@@ -35,6 +35,7 @@
           >
             Inserir
           </app-post>
+
         </b-input-group-append>
       </b-input-group>
     </template>

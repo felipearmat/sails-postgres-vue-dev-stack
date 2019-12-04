@@ -43,6 +43,13 @@
             >
               Inserir
             </app-post>
+            <app-post
+              url="/removeLista"
+              :value="postData"
+              @resolved="trataPost"
+            >
+              Remover
+            </app-post>
           </b-input-group-append>
         </b-input-group>
       </b-col>
@@ -55,13 +62,11 @@
 import lista from './componentes/lista.vue'
 import get from './componentes/get.vue'
 import post from './componentes/post.vue'
-import mensagens from './componentes/mensagens.vue'
 export default {
   components: {
     'app-lista': lista,
     'app-get': get,
-    'app-post': post,
-    'app-mensagens': mensagens
+    'app-post': post
   },
   data: function () {
     return {

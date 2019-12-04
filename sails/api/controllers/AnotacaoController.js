@@ -35,7 +35,13 @@ module.exports = {
   alteraLista: async function(request, response) {
   },
   removeLista: async function(request, response) {
-
+    var _nome = request.body.nome
+    var _item = await Item.find({nome: _nome})
+    if (_item.length < 1) {
+      return response.status(400).json({ erros: [`Item nome: '${_nome}' não existe!`]})
+    }
+    await Item.destroy({nome: _nome})
+    return response.json({ resposta: `Item nome: '${_nome}' removido com sucesso!` })
   },
   alteraAnotacao: async function(request, response) {
     var _anotacaoId = request.body.id
@@ -56,7 +62,7 @@ module.exports = {
     }
   },
   removeAnotacao: async function(request, response) {
-
+    
   },
 }
 
