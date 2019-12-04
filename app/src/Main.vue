@@ -25,6 +25,11 @@
     <b-row class="mt-4">
       <b-col />
       <b-col cols="6">
+        <app-mensagens
+          class="mt-2 mb-2"
+          :value="erros"
+          variant="danger"
+        />
         <b-input-group
           prepend="Nova Lista"
           class="mb-2"

@@ -8,9 +8,11 @@
  * For more information on seeding your app with fake data, check out:
  * https://sailsjs.com/config/bootstrap
  */
+const migrate = require('../db/migrate.js')
 
-module.exports.bootstrap = async function() {
-
+module.exports.bootstrap = async function(done) {
+  migrate.run();
+  done();
   // By convention, this is a good place to set up fake data during development.
   //
   // For example:
@@ -26,5 +28,4 @@ module.exports.bootstrap = async function() {
   //   // etc.
   // ]);
   // ```
-
 };
