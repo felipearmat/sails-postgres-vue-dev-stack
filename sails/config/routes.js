@@ -24,6 +24,7 @@ module.exports.routes = {
   'get /anotacoes': 'AnotacaoController.consulta',
 
   'post /criaLista': 'AnotacaoController.criaLista',
+  'post /alteraLista': 'AnotacaoController.alteraLista',
   'post /removeLista': 'AnotacaoController.removeLista',
   'post /criaAnotacao': 'AnotacaoController.criaAnotacao',
   'post /alteraAnotacao': 'AnotacaoController.alteraAnotacao',

@@ -11,12 +11,11 @@
       <b-col />
       <b-col cols="6">
         <app-lista
-          v-for="(item, index) in listas"
-          :key="'lista_' + index"
-          :value="listas[index]"
+          v-for="item in listas"
+          :key="'lista_' + item.id"
+          :value="item"
           :titulo="item.nome"
           class="mb-3"
-          @changeLista="atualizaLista"
           @resolved="trataPost"
         />
       </b-col>
@@ -26,6 +25,7 @@
       <b-col />
       <b-col cols="6">
         <app-mensagens
+          id="mensagem-erro"
           class="mt-2 mb-2"
           :value="erros"
           variant="danger"
@@ -43,13 +43,6 @@
             >
               Inserir
             </app-post>
-            <app-post
-              url="/removeLista"
-              :value="postData"
-              @resolved="trataPost"
-            >
-              Remover
-            </app-post>
           </b-input-group-append>
         </b-input-group>
       </b-col>
@@ -62,11 +55,13 @@
 import lista from './componentes/lista.vue'
 import get from './componentes/get.vue'
 import post from './componentes/post.vue'
+import mensagens from './componentes/mensagens.vue'
 export default {
   components: {
     'app-lista': lista,
     'app-get': get,
-    'app-post': post
+    'app-post': post,
+    'app-mensagens': mensagens
   },
   data: function () {
     return {
@@ -127,6 +122,10 @@ export default {
       this.nome = ''
       if (response.data.erros) {
         this.erros = response.data.erros
+        this.$nextTick(() => {
+          var element = document.getElementById('mensagem-erro')
+          element.scrollIntoView()
+        })
       } else {
         this.$refs.get_anotacoes.submit()
       }
@@ -139,9 +138,6 @@ export default {
         return 1
       }
       return 0
-    },
-    atualizaLista (value) {
-      console.log(value)
     }
   }
 }

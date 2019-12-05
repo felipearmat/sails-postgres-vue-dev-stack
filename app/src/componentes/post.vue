@@ -68,16 +68,25 @@ export default {
       this.lastResponse = response
       this.$emit('resolved', response)
     },
-    submit () {
+    submit (url, params, data) {
+      if (!url) {
+        url = this.url
+      }
+      if (!params) {
+        params = this.parameters
+      }
+      if (!data) {
+        data = this.value
+      }
       var self = this
       this.busy = true
       this.$emit('busy', true)
       this.$emit('click', '')
       this.$http({
         method: 'POST',
-        url: self.url,
-        params: self.parameters,
-        data: self.value,
+        url: url,
+        params: params,
+        data: data,
         headers: { 'X-CSRF-Token': window._csrf }
       }).then(function (response) {
         self.busy = false
