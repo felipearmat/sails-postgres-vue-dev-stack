@@ -14,7 +14,7 @@
       <b-modal
         :id="'modal-alterar-' + value.id"
         :ref="'modal-alterar-' + value.id"
-        hide-header
+        hideHeader
         @ok="postLista($event, value.id, 'alterar')"
       >
         <h6>Insira um novo nome para a lista {{ titulo }}:</h6>
@@ -41,7 +41,7 @@
       </b-button>
       <b-modal
         :id="'modal-excluir-' + value.id"
-        hide-header
+        hideHeader
         @ok="postLista($event, value.id, 'excluir')"
       >
         <h6>Tem certeza que você quer excluir a lista: {{ titulo }}?</h6>

@@ -144,4 +144,7 @@ export default {
 </script>
 
 <style>
+body {
+  background-image: url(~@/assets/bg.jpg);
+}
 </style>
