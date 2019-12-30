@@ -1,7 +1,4 @@
 var path = require('path')
-var webpack = require('webpack')
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
-const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 function resolve (...dir) {
   return path.join(__dirname, ...dir)

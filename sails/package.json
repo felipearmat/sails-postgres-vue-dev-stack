@@ -5,6 +5,9 @@
   "description": "a Sails application",
   "keywords": [],
   "dependencies": {
+    "debug": "3.1.0",
+    "knex": "0.19.5",
+    "braces": "2.3.1",
     "sails": "^1.2.3",
     "grunt": "1.0.4",
     "sails-postgresql": "1.0.2",

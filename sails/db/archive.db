@@ -1,5 +1,0 @@
-{"$$indexCreated":{"fieldName":"id","unique":true}}
-{"$$indexRemoved":"originalRecordId"}
-{"$$indexRemoved":"createdAt"}
-{"$$indexRemoved":"fromModel"}
-{"$$indexRemoved":"originalRecord"}

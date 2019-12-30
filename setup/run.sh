@@ -9,7 +9,7 @@ npm install
 cd "$APP_FOLDER/sails"
 npm install
 echo "Dependências instaladas!!!"
-echo "Iniciando Vue no modo watch com WebPack..."
+echo "Iniciando Vue no modo watch com Vue-Cli..."
 cd "$APP_FOLDER/app"
 npm start &
 cd "$APP_FOLDER/sails"
